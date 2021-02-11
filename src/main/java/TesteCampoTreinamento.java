@@ -104,5 +104,15 @@ public class TesteCampoTreinamento {
 		
 		driver.quit();
 	}
+	
+	@Test
+	public void deveInteragirComBotoes() {
+		WebElement botao = driver.findElement(By.id("buttonSimple"));
+		botao.click();
+		
+		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
+		
+		driver.quit();
+	}
 
 }
