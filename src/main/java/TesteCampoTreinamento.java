@@ -1,3 +1,5 @@
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,6 +62,26 @@ public class TesteCampoTreinamento {
 //		combo.selectByValue("superior");
 		combo.selectByVisibleText("2o grau incompleto");
 		Assert.assertEquals("2o grau incompleto", combo.getFirstSelectedOption().getText());
+		
+		driver.quit();
+	}
+	
+	@Test
+	public void deveVerificarValoresCombo() {
+		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
+		Select combo = new Select(element);
+		List<WebElement> options = combo.getOptions();
+		
+		Assert.assertEquals(8, options.size());
+		
+		boolean encontrou = false;
+		for(WebElement option : options) {
+			if(option.getText().equals("Mestrado")) {
+				encontrou = true;
+				break;
+			}
+		}
+		Assert.assertTrue(encontrou);
 		
 		driver.quit();
 	}
