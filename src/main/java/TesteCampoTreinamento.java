@@ -117,14 +117,32 @@ public class TesteCampoTreinamento {
 	}
 	
 	@Test
-	@Ignore
+//	@Ignore
 	public void deveInteragirComLinks() {
 		WebElement link = driver.findElement(By.linkText("Voltar"));
 		link.click();
 		
-//		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
+		Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
 		
-//		driver.quit();
+		driver.quit();
+	}
+	
+	@Test
+	public void deveBuscarTextosNaPagina() {
+		WebElement link = driver.findElement(By.linkText("Voltar"));
+		link.click();
+		
+		Assert.assertTrue(driver.findElement(By.tagName("body"))
+				.getText().contains("Campo de Treinamento"));
+		
+		Assert.assertEquals("Campo de Treinamento", driver.findElement(
+				By.tagName("h3")).getText());
+		
+		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...",
+				driver.findElement(By.className("facilAchar"))
+				.getText());
+		
+		driver.quit();
 	}
 
 }
