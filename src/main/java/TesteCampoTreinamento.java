@@ -2,6 +2,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -113,6 +114,17 @@ public class TesteCampoTreinamento {
 		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
 		
 		driver.quit();
+	}
+	
+	@Test
+	@Ignore
+	public void deveInteragirComLinks() {
+		WebElement link = driver.findElement(By.linkText("Voltar"));
+		link.click();
+		
+//		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
+		
+//		driver.quit();
 	}
 
 }
