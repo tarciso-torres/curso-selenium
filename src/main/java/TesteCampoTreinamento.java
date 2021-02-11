@@ -85,5 +85,24 @@ public class TesteCampoTreinamento {
 		
 		driver.quit();
 	}
+	
+	@Test
+	public void deveVerificarValoresComboMultiplo() {
+		WebElement element = driver.findElement(By.id("elementosForm:esportes"));
+		Select combo = new Select(element);
+		combo.selectByVisibleText("Natacao");
+		combo.selectByVisibleText("Corrida");
+		combo.selectByVisibleText("O que eh esporte?");
+		
+		List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
+		
+		Assert.assertEquals(3, allSelectedOptions.size());
+		
+		combo.deselectByVisibleText("Corrida");
+		allSelectedOptions = combo.getAllSelectedOptions();
+		Assert.assertEquals(2, allSelectedOptions.size());
+		
+		driver.quit();
+	}
 
 }
