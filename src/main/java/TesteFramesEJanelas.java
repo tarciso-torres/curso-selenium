@@ -41,6 +41,19 @@ public class TesteFramesEJanelas {
 		driver.close();
 		driver.switchTo().window("");
 		driver.findElement(By.tagName("textarea")).sendKeys("E agora?");
-//		driver.close();
+		driver.close(); // Fecha a janela atual
+	}
+	
+	@Test
+	public void deveInteragirComJanelasSemTitulo() {
+		driver.findElement(By.id("buttonPopUpHard")).click();
+		System.out.println(driver.getWindowHandle()); // Retorna o identificador atual da janela
+		System.out.println(driver.getWindowHandles()); // Retorna um array com os identificadores das janelas abertaas
+		driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);
+		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
+		driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);
+		driver.findElement(By.tagName("textarea")).sendKeys("E agora?");
+		
+		driver.quit(); // Fecha todas as Janelas
 	}
 }
