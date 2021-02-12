@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestAlert {
 	
-private WebDriver driver;
+	private WebDriver driver;
 	
 	@Before
 	public void setUp() {
