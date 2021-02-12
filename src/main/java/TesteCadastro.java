@@ -50,5 +50,15 @@ public class TesteCadastro {
 		
 		driver.quit();
 	}
+	
+	@Test
+	public void deveValidarSobrenomeObrigatorio() {
+		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome Qualquer");
+		driver.findElement(By.id("elementosForm:cadastrar")).click();
+		Alert alert = driver.switchTo().alert();
+		Assert.assertEquals("Sobrenome eh obrigatorio", alert.getText());
+		
+		driver.quit();
+	}
 
 }
