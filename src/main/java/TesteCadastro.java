@@ -60,5 +60,31 @@ public class TesteCadastro {
 		
 		driver.quit();
 	}
+	
+	@Test
+	public void deveValidarSexoObrigatorio() {
+		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome Qualquer");
+		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Sobrenome Qualquer");
+		driver.findElement(By.id("elementosForm:cadastrar")).click();
+		Alert alert = driver.switchTo().alert();
+		Assert.assertEquals("Sexo eh obrigatorio", alert.getText());
+		
+		driver.quit();
+	}
+	
+	@Test
+	public void deveValidarComidaVegetariana() {
+		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome Qualquer");
+		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Sobrenome Qualquer");
+		driver.findElement(By.id("elementosForm:sexo:1")).click();
+		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
+		driver.findElement(By.id("elementosForm:comidaFavorita:3")).click();
+		
+		driver.findElement(By.id("elementosForm:cadastrar")).click();
+		Alert alert = driver.switchTo().alert();
+		Assert.assertEquals("Tem certeza que voce eh vegetariano?", alert.getText());
+		
+		driver.quit();
+	}
 
 }
