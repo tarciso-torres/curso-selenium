@@ -32,4 +32,15 @@ public class TesteFramesEJanelas {
 		
 		driver.close();
 	}
+	
+	@Test
+	public void deveInteragirComJanelas() {
+		driver.findElement(By.id("buttonPopUpEasy")).click();
+		driver.switchTo().window("Popup");
+		driver.findElement(By.tagName("textarea")).sendKeys("Deu certo?");
+		driver.close();
+		driver.switchTo().window("");
+		driver.findElement(By.tagName("textarea")).sendKeys("E agora?");
+//		driver.close();
+	}
 }
