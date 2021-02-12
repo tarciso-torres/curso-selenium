@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -39,6 +40,15 @@ public class TesteCadastro {
 		Assert.assertEquals("Escolaridade: mestrado", driver.findElement(By.id("descEscolaridade")).getText());
 		Assert.assertEquals("Esportes: Natacao", driver.findElement(By.id("descEsportes")).getText());
 		driver.close();
+	}
+	
+	@Test
+	public void deveValidarNomeObrigatorio() {
+		driver.findElement(By.id("elementosForm:cadastrar")).click();
+		Alert alert = driver.switchTo().alert();
+		Assert.assertEquals("Nome eh obrigatorio", alert.getText());
+		
+		driver.quit();
 	}
 
 }
