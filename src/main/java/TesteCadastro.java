@@ -86,5 +86,22 @@ public class TesteCadastro {
 		
 		driver.quit();
 	}
+	
+	@Test
+	public void deveValidarEsportistaIndeciso() {
+		driver.findElement(By.id("elementosForm:nome")).sendKeys("Nome Qualquer");
+		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Sobrenome Qualquer"); 
+		driver.findElement(By.id("elementosForm:sexo:1")).click();
+		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
+		Select combo = new Select(driver.findElement(By.id("elementosForm:esportes")));
+		combo.selectByVisibleText("Karate");
+		combo.selectByVisibleText("O que eh esporte?");
+		
+		driver.findElement(By.id("elementosForm:cadastrar")).click();
+		Alert alert = driver.switchTo().alert();
+		Assert.assertEquals("Voce faz esporte ou nao?", alert.getText());
+		
+		driver.quit();
+	}
 
 }
