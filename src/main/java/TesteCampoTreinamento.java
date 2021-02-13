@@ -1,5 +1,6 @@
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,12 +22,15 @@ public class TesteCampoTreinamento {
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 	}
 	
+	@After
+	public void finaliza() {
+		driver.quit();
+	}
+	
 	@Test
 	public void teste() {
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Teste do sucesso");
 		Assert.assertEquals("Teste do sucesso",  driver.findElement(By.id("elementosForm:nome")).getAttribute("value"));
-		
-		driver.quit();
 		
 	}
 	
@@ -34,24 +38,18 @@ public class TesteCampoTreinamento {
 	public void deveInteragirComTextArea() {
 		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Teste sugestão\n\nNova linha\nMais uma linha");
 		Assert.assertEquals("Teste sugestão\n\nNova linha\nMais uma linha",  driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
-		
-		driver.quit();
 	}
 	
 	@Test
 	public void deveInteragirComRadioButton() {
 		driver.findElement(By.id("elementosForm:sexo:0")).click();
 		Assert.assertTrue(driver.findElement(By.id("elementosForm:sexo:0")).isSelected());
-		
-		driver.quit();
 	}
 	
 	@Test
 	public void deveInteragirComCheckbox() {
 		driver.findElement(By.id("elementosForm:comidaFavorita:2")).click();
 		Assert.assertTrue(driver.findElement(By.id("elementosForm:comidaFavorita:2")).isSelected());
-		
-		driver.quit();
 	}
 	
 	@Test
@@ -62,8 +60,6 @@ public class TesteCampoTreinamento {
 //		combo.selectByValue("superior");
 		combo.selectByVisibleText("2o grau incompleto");
 		Assert.assertEquals("2o grau incompleto", combo.getFirstSelectedOption().getText());
-		
-		driver.quit();
 	}
 	
 	@Test
@@ -82,8 +78,6 @@ public class TesteCampoTreinamento {
 			}
 		}
 		Assert.assertTrue(encontrou);
-		
-		driver.quit();
 	}
 	
 	@Test
@@ -101,8 +95,6 @@ public class TesteCampoTreinamento {
 		combo.deselectByVisibleText("Corrida");
 		allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(2, allSelectedOptions.size());
-		
-		driver.quit();
 	}
 	
 	@Test
@@ -122,8 +114,6 @@ public class TesteCampoTreinamento {
 		link.click();
 		
 		Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
-		
-		driver.quit();
 	}
 	
 	@Test
@@ -140,8 +130,6 @@ public class TesteCampoTreinamento {
 		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...",
 				driver.findElement(By.className("facilAchar"))
 				.getText());
-		
-		driver.quit();
 	}
 
 }
