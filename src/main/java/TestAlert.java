@@ -1,3 +1,4 @@
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +20,11 @@ public class TestAlert {
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 	}
 	
+	@After
+	public void finaliza() {
+		driver.close();
+	}
+	
 	@Test
 	public void deveInteragirComAlertaSimples() {
 		driver.findElement(By.id("alert")).click();
@@ -29,8 +35,6 @@ public class TestAlert {
 		alert.accept();
 		
 		driver.findElement(By.id("elementosForm:nome")).sendKeys(texto);
-		
-		driver.close();
 	}
 	
 	@Test
@@ -48,8 +52,6 @@ public class TestAlert {
 		alert.dismiss();
 		Assert.assertEquals("Negado", alert.getText());
 		alert.dismiss();
-		
-		driver.close();
 	}
 	
 	@Test
@@ -63,8 +65,6 @@ public class TestAlert {
 		alert.accept();
 		Assert.assertEquals(":D", alert.getText());
 		alert.accept();
-		
-		driver.close();
 	}
 
 }
