@@ -27,7 +27,9 @@ public class DSL {
 	}
 
 	public String obterValorCampo(String id_campo) {
-		return driver.findElement(By.id(id_campo)).getAttribute("value");
+		WebElement element = driver.findElement(By.id(id_campo));
+		Select combo = new Select(element);
+		return combo.getFirstSelectedOption().getText();
 	}
 
 	/********* Radio e Check ************/
