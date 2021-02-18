@@ -25,24 +25,5 @@ public class TesteCadastro {
 	public void finaliza() {
 		driver.quit();
 	}
-	
-	@Test
-	public void deveFazerCadastroComSucesso() {
-		page.setNome("Tarciso");
-		page.setSobrenome("Torres");
-		page.setSexoMasculino();
-		page.setComidaPizza();
-		page.setEscolaridade("Mestrado");
-		page.setEsporte("Natacao");
-		page.clicarBotaoCadastrar();
-		
-		Assert.assertTrue(page.getResultadoCadastro().startsWith("Cadastrado!"));
-		Assert.assertTrue(page.getNomeCadastro().endsWith("Tarciso"));
-		Assert.assertEquals("Sobrenome: Torres", page.getSobrenomeCadastro());
-		Assert.assertEquals("Sexo: Masculino", page.getSexoCadastro());
-		Assert.assertEquals("Comida: Pizza", page.getComidaCadastro());
-		Assert.assertEquals("Escolaridade: mestrado", page.getEscolaridadeCadastro());
-		Assert.assertEquals("Esportes: Natacao", page.getEsporteCadastro());
-	}
 
 }
